@@ -1,3 +1,8 @@
+l_mammino_jhac:
+    resource: "@LMamminoJHACBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 # Internal routing configuration to handle ESI
 #_internal:
 #    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"

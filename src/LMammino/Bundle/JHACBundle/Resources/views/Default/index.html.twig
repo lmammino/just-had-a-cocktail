@@ -1,0 +1,11 @@
+{% extends "LMamminoJHACBundle::base.html.twig" %}
+
+{% block content %}
+    <h2>Cocktails</h2>
+
+    <ul>
+        {% for cocktail in cocktails %}
+            <li><a href="{{ cocktail.getRelativeUrl() }}"><img src={{ cocktail.getImageSrc() }}>{{ cocktail.getName() }}</a></li>
+        {%  endfor %}
+    </ul>
+{% endblock %}

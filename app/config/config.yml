@@ -26,7 +26,7 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        [ ]
+    bundles:        [OryzoneBoilerplateBundle]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -57,3 +57,18 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
     spool:     { type: memory }
+
+#FOSUserBundle
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: LMammino\Bundle\JHACBundle\Entity\User
+
+#FOSFacebookBundle
+fos_facebook:
+      file:   %kernel.root_dir%/../vendor/facebook/php-sdk/src/base_facebook.php
+      alias:  facebook
+      app_id: 264941376960009
+      secret: 812f8e59f9ef74a1e84bdce6b7e3de20
+      cookie: true
+      permissions: [email, user_birthday, user_location, publish_stream]
