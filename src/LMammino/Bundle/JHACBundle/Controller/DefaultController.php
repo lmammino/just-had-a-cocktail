@@ -25,10 +25,12 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $cocktails = $this->getCocktailRepository()->findCocktails();
+        $cocktailOfTheDay = $cocktails[(int)date('z') % count($cocktails)];
 
         return array
         (
-            'cocktails' => $cocktails
+            'cocktails' => $cocktails,
+            'cocktailOfTheDay' => $cocktailOfTheDay
         );
     }
 

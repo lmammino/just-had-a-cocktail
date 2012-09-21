@@ -1,30 +1,53 @@
 {% extends "LMamminoJHACBundle::base.html.twig" %}
 
+{% block head_title %}{{ cocktail.getName() }} - {{ parent() }}{% endblock %}
+
+{% block head_meta_description %}{{ cocktail.computeShortDescription() }}{% endblock %}
+{% block head_meta_keywords %}cocktail, cocktails, drink, shake, bar, {{ cocktail.computeKeywords() }}{% endblock %}
+{% block head_meta_image %}{{ cocktail.getImageSrc('fb') }}{% endblock %}
+
 {% block content %}
-    <h2 id="cocktail-name">{{ cocktail.getName() }}</h2>
 
-    <img src="{{ cocktail.getImageSrc() }}" alt="{{ cocktail.getName() }}"/>
+    <div class="row title-box">
+        <div class="eight columns offset-by-four">
+            <h2 id="cocktail-name">{{ cocktail.getName() }}</h2>
+        </div>
+    </div>
 
-    <h3 id="cocktail-description">Description</h3>
-    <div class="description">{{ cocktail.getDescription()|markdown }}</div>
+    <div class="row">
 
-    {% if cocktail.getIngredients() and cocktail.getIngredients()|length > 0 %}
-        <h3 id="cocktail-ingredients">Ingredients</h3>
-        <ul class="ingredients">
-            {% for ingredient, quantity in cocktail.getIngredients() %}
-                <li><span class="quantity">{{ quantity }}</span> of <span class="ingredient">{{ ingredient }}</span></li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+        <div class="four columns">
+            <p class="cocktail-image">
+                <img src="{{ cocktail.getImageSrc() }}" alt="{{ cocktail.getName() }}"/>
+            </p>
 
-    {% if cocktail.getPreparation() %}
-        <h3 id="cocktail-preparation">Preparation</h3>
-        <div class="preparation">{{ cocktail.getPreparation()|markdown }}</div>
-    {% endif %}
+            <div class="actions-box">
+                <a class="button round button-had-it" href="#">Just had it!</a>
+            </div>
+        </div>
 
-    <div class="actions">
-        {% if cocktail.getWikipediaUrl() %}<a class="button button-wikipedia" href="{{ cocktail.getWikipediaUrl() }}">See it on Wikipedia</a>{% endif %}
-        <a class="button button-had-it" href="#">Just had it!</a>
+        <div class="eight columns">
+            <h3 id="description" class="subheader">Description</h3>
+            <div class="cocktail-description">
+                {{ cocktail.getDescription()|markdown }}
+                {% if cocktail.getWikipediaUrl() %}<p><a class="link-wikipedia" href="{{ cocktail.getWikipediaUrl() }}">Read more on Wikipedia...</a></p>{% endif %}
+            </div>
+
+            {% if cocktail.getIngredients() and cocktail.getIngredients()|length > 0 %}
+                <h3 id="cocktail-ingredients" class="subheader">Ingredients</h3>
+                <ul class="ingredients">
+                    {% for ingredient, quantity in cocktail.getIngredients() %}
+                        <li><span class="quantity">{{ quantity }}</span> of <span class="ingredient">{{ ingredient }}</span></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {% if cocktail.getPreparation() %}
+                <h3 id="cocktail-preparation" class="subheader">Preparation</h3>
+                <div class="preparation">{{ cocktail.getPreparation()|markdown }}</div>
+            {% endif %}
+        </div>
+
     </div>
 
 {% endblock %}

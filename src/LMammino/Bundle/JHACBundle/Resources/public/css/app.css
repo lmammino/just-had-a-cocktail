@@ -1,0 +1,52 @@
+.top-bar
+{
+    background-image: url(http://subtlepatterns.com/patterns/txture.png);
+
+}
+
+footer
+{
+    margin-top: 60px;
+}
+
+.home-banner
+{
+    background-color: #b7dff1;
+}
+
+.home-banner .row
+{
+    height: 200px;
+}
+
+.title-box
+{
+    border-bottom: 2px solid #cdcdcd;
+}
+
+.actions-box
+{
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+    padding: 20px;
+}
+
+.cocktails-list li a
+{
+    border-radius: 10px;
+    color: #333;
+    display: block;
+    font-size: 1.4em;
+    padding: 10px;
+}
+
+.cocktails-list li a:hover
+{
+    background-color: #b7dff1;
+    color: #101010;
+}
+
+.cocktail-image
+{
+    text-align: center;
+}

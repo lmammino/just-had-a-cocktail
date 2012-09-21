@@ -236,4 +236,27 @@ class Cocktail
     {
         return '/cocktail/'. $this->slug;
     }
+
+    /**
+     * Truncates the description
+     *
+     * @return string
+     */
+    public function computeShortDescription()
+    {
+        return substr($this->description, 0, 155);
+    }
+
+    /**
+     * Return a string containing the keywords of the current cocktail
+     *
+     * @param string $separator
+     * @return string
+     */
+    public function computeKeywords($separator = ', ')
+    {
+        $keywords = array($this->name);
+        $keywords = array_merge($keywords, array_keys($this->ingredients));
+        return implode($separator, $keywords);
+    }
 }

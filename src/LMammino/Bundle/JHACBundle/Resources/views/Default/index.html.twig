@@ -1,11 +1,38 @@
 {% extends "LMamminoJHACBundle::base.html.twig" %}
 
 {% block content %}
-    <h2>Cocktails</h2>
+    <div class="home-banner">
+        <div class="row">
+            {% if app.user %}
+                <h2>Cocktail of the day</h2>
+                <h2 class="subheader">{{ cocktailOfTheDay.getName() }}</h2>
+                <img class="left" src="{{ cocktailOfTheDay.getImageSrc() }}" width="150" height="150"/>
+                {% if cocktailOfTheDay.getIngredients() %}
+                    <h4 class="subheader">Ingredients</h4>
+                    <ul>
+                        {% for ingredient, quantity in cocktailOfTheDay.getIngredients() %}
+                        <li>{{ quantity }} of {{ ingredient }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% else %}
+                <p>Discover cocktails... bla bla bla</p>
+            {% endif %}
+        </div>
+    </div>
 
-    <ul>
-        {% for cocktail in cocktails %}
-            <li><a href="{{ path('lmammino_jhac_default_cocktail', {'slug':cocktail.getSlug()}) }}"><img src="{{ cocktail.getImageSrc('small') }}" title="{{ cocktail.getName() }}" /><span>{{ cocktail.getName() }}</span></a></li>
-        {%  endfor %}
-    </ul>
+    <div class="row">
+        <h2 class="subheader">Select a cocktail</h2>
+        <ul class="block-grid three-up mobile-two-up cocktails-list">
+            {% for cocktail in cocktails %}
+                <li>
+                    <a href="{{ path('lmammino_jhac_default_cocktail', {'slug':cocktail.getSlug()}) }}">
+                        <img src="{{ cocktail.getImageSrc('small') }}" title="{{ cocktail.getName() }}" />
+                        <span>{{ cocktail.getName() }}</span>
+                    </a>
+                </li>
+            {%  endfor %}
+        </ul>
+    </div>
+
 {% endblock %}
