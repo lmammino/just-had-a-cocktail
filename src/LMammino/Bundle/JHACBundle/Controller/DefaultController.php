@@ -31,4 +31,23 @@ class DefaultController extends Controller
             'cocktails' => $cocktails
         );
     }
+
+    /**
+     * @Route("/cocktail/{slug}")
+     * @Template()
+     */
+    public function cocktailAction($slug)
+    {
+        $cocktail = $this->getCocktailRepository()->findOneBy(array(
+            'slug' => $slug
+        ));
+
+        if( !$cocktail instanceof \LMammino\Bundle\JHACBundle\Entity\Cocktail )
+            throw $this->createNotFoundException('Cocktail not found');
+
+        return array
+        (
+            'cocktail' => $cocktail
+        );
+    }
 }

@@ -22,7 +22,8 @@
         "doctrine/doctrine-fixtures-bundle" : "*",
         "friendsofsymfony/user-bundle": "*",
         "friendsofsymfony/facebook-bundle": "dev-master",
-        "oryzone/boilerplate-bundle": "*"
+        "oryzone/boilerplate-bundle": "*",
+        "knplabs/knp-markdown-bundle": "*"
     },
     "scripts": {
         "post-install-cmd": [

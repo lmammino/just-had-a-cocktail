@@ -38,6 +38,13 @@ class Cocktail
     private $slug;
 
     /**
+     * @var string $type
+     *
+     * @ORM\Column(name="type", type="string", length=255, nullable=true)
+     */
+    private $type;
+
+    /**
      * @var string $description
      *
      * @ORM\Column(name="description", type="text", nullable=true)
@@ -45,11 +52,25 @@ class Cocktail
     private $description;
 
     /**
-     * @var integer $calories
+     * @var array $ingredients
      *
-     * @ORM\Column(name="calories", type="integer", nullable=true)
+     * @ORM\Column(name="ingredients", type="array", nullable=true)
      */
-    private $calories;
+    private $ingredients;
+
+    /**
+     * @var string $preparation
+     *
+     * @ORM\Column(name="preparation", type="text", nullable=true)
+     */
+    private $preparation;
+
+    /**
+     * @var string $wikipediaUrl
+     *
+     * @ORM\Column(name="wikipediaUrl", type="text", nullable=true)
+     */
+    private $wikipediaUrl;
 
 
     /**
@@ -132,26 +153,67 @@ class Cocktail
     }
 
     /**
-     * Set calories
-     *
-     * @param integer $calories
-     * @return Cocktail
+     * @param array $ingredients
      */
-    public function setCalories($calories)
+    public function setIngredients($ingredients)
     {
-        $this->calories = $calories;
-    
-        return $this;
+        $this->ingredients = $ingredients;
     }
 
     /**
-     * Get calories
-     *
-     * @return integer 
+     * @return array
      */
-    public function getCalories()
+    public function getIngredients()
     {
-        return $this->calories;
+        return $this->ingredients;
+    }
+
+    /**
+     * @param string $preparation
+     */
+    public function setPreparation($preparation)
+    {
+        $this->preparation = $preparation;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPreparation()
+    {
+        return $this->preparation;
+    }
+
+    /**
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $wikipediaUrl
+     */
+    public function setWikipediaUrl($wikipediaUrl)
+    {
+        $this->wikipediaUrl = $wikipediaUrl;
+    }
+
+    /**
+     * @return string
+     */
+    public function getWikipediaUrl()
+    {
+        return $this->wikipediaUrl;
     }
 
     /**
@@ -159,9 +221,10 @@ class Cocktail
      *
      * @return string
      */
-    public function getImageSrc()
+    public function getImageSrc($variant = NULL)
     {
-        return \LMammino\Bundle\JHACBundle\LMamminoJHACBundle::getImageDir() . $this->slug . '-cocktail.png';
+        return \LMammino\Bundle\JHACBundle\LMamminoJHACBundle::getImageDir() .
+                    $this->slug . '-cocktail' . (($variant) ? ('-' . $variant) : '') . '.png';
     }
 
     /**

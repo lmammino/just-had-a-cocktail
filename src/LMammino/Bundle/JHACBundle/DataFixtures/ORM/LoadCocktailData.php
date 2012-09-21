@@ -23,8 +23,12 @@ class LoadCocktailData extends AbstractFixture implements OrderedFixtureInterfac
             $cocktail->setSlug($cocktailName);
             if(!empty($cocktailData['description']))
                 $cocktail->setDescription($cocktailData['description']);
-            if(!empty($cocktailData['calories']))
-                $cocktail->setCalories($cocktailData['calories']);
+            if(!empty($cocktailData['ingredients']))
+                $cocktail->setIngredients($cocktailData['ingredients']);
+            if(!empty($cocktailData['preparation']))
+                $cocktail->setPreparation($cocktailData['preparation']);
+            if(!empty($cocktailData['wikipediaUrl']))
+                $cocktail->setWikipediaUrl($cocktailData['wikipediaUrl']);
 
             $manager->persist($cocktail);
         }

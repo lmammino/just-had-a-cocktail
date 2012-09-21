@@ -1,7 +1,7 @@
 {% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
 
 {% block head_title %}Just had a cocktail!{% endblock %}
-{% block body_container_header %}<h1>Just had a cocktail</h1>{% endblock %}
+{% block body_container_header %}<h1><a href="{{ path('lmammino_jhac_default_index') }}" title="Back to cocktail list">Just had a cocktail</a></h1>{% endblock %}
 
 {% block body_container_main %}
     <div class="alert">This website is under development!</div>
@@ -11,10 +11,11 @@
 {% block body_container_footer %}
     <p>
         © 2012 <a href="https://github.com/lmammino" title="lmammino's Github profile">lmammino</a>,
-        Cocktails icons by <a href="http://www.iconlee.com" title="IconLee">IconLee</a>
+        Cocktails icons by <a href="http://www.iconlee.com" title="IconLee">IconLee</a>,
+        Cocktails informations by <a href="http://en.wikipedia.org/wiki/List_of_cocktails" title="Wikipedia">Wikipedia</a>.
     </p>
     <p>
-        Using <a href="">FOSUserBundle</a>, <a href="">FOSFacebookBundle</a>, <a href="https://github.com/Oryzone/OryzoneBoilerplateBundle">OryzoneBoilerplateBundle</a>. <br/>
+        Using <a href="https://github.com/FriendsOfSymfony/FOSUserBundle">FOSUserBundle</a>, <a href="https://github.com/FriendsOfSymfony/FOSFacebookBundle">FOSFacebookBundle</a>, <a href="https://github.com/Oryzone/OryzoneBoilerplateBundle">OryzoneBoilerplateBundle</a>, <a href="https://github.com/KnpLabs/KnpMarkdownBundle">KnpMarkdownBundle</a> <br/>
         Source code available on <a href="https://github.com/lmammino/just-had-a-cocktail">Github</a>! Yes, you can submit a <a href="https://github.com/lmammino/just-had-a-cocktail/pull/new/master">pull request</a> to improve this website!
     </p>
 {% endblock %}

@@ -1,0 +1,30 @@
+{% extends "LMamminoJHACBundle::base.html.twig" %}
+
+{% block content %}
+    <h2 id="cocktail-name">{{ cocktail.getName() }}</h2>
+
+    <img src="{{ cocktail.getImageSrc() }}" alt="{{ cocktail.getName() }}"/>
+
+    <h3 id="cocktail-description">Description</h3>
+    <div class="description">{{ cocktail.getDescription()|markdown }}</div>
+
+    {% if cocktail.getIngredients() and cocktail.getIngredients()|length > 0 %}
+        <h3 id="cocktail-ingredients">Ingredients</h3>
+        <ul class="ingredients">
+            {% for ingredient, quantity in cocktail.getIngredients() %}
+                <li><span class="quantity">{{ quantity }}</span> of <span class="ingredient">{{ ingredient }}</span></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if cocktail.getPreparation() %}
+        <h3 id="cocktail-preparation">Preparation</h3>
+        <div class="preparation">{{ cocktail.getPreparation()|markdown }}</div>
+    {% endif %}
+
+    <div class="actions">
+        {% if cocktail.getWikipediaUrl() %}<a class="button button-wikipedia" href="{{ cocktail.getWikipediaUrl() }}">See it on Wikipedia</a>{% endif %}
+        <a class="button button-had-it" href="#">Just had it!</a>
+    </div>
+
+{% endblock %}

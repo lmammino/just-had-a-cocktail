@@ -5,7 +5,7 @@
 
     <ul>
         {% for cocktail in cocktails %}
-            <li><a href="{{ cocktail.getRelativeUrl() }}"><img src={{ cocktail.getImageSrc() }}>{{ cocktail.getName() }}</a></li>
+            <li><a href="{{ path('lmammino_jhac_default_cocktail', {'slug':cocktail.getSlug()}) }}"><img src="{{ cocktail.getImageSrc('small') }}" title="{{ cocktail.getName() }}" /><span>{{ cocktail.getName() }}</span></a></li>
         {%  endfor %}
     </ul>
 {% endblock %}
