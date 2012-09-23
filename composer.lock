@@ -1,5 +1,5 @@
 {
-    "hash": "822265b04f3e5ecfc9dcc85bca033044",
+    "hash": "15b1b17036a796861328ae48276e58ca",
     "packages": [
         {
             "name": "doctrine/common",
@@ -68,47 +68,6 @@
                 "persistence"
             ],
             "time": "1348120518"
-        },
-        {
-            "name": "doctrine/data-fixtures",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/doctrine/data-fixtures.git",
-                "reference": "b29bad9738fada9486961f60542f2d2d77c7b501"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/doctrine/data-fixtures/zipball/b29bad9738fada9486961f60542f2d2d77c7b501",
-                "reference": "b29bad9738fada9486961f60542f2d2d77c7b501",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2"
-            },
-            "time": "1348136794",
-            "type": "library",
-            "installation-source": "source",
-            "autoload": {
-                "psr-0": {
-                    "Doctrine\\Common\\DataFixtures": "lib/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jonathan H. Wage",
-                    "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/"
-                }
-            ],
-            "description": "Data Fixtures for all Doctrine Object Managers",
-            "homepage": "http://www.doctrine-project.org",
-            "keywords": [
-                "database"
-            ]
         },
         {
             "name": "doctrine/dbal",
@@ -239,59 +198,6 @@
                 "dbal"
             ],
             "time": "1347289964"
-        },
-        {
-            "name": "doctrine/doctrine-fixtures-bundle",
-            "version": "dev-master",
-            "target-dir": "Doctrine/Bundle/FixturesBundle",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/doctrine/DoctrineFixturesBundle.git",
-                "reference": "186d605aa6b592bd577e07e0e9a2c420b02b2492"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/doctrine/DoctrineFixturesBundle/zipball/186d605aa6b592bd577e07e0e9a2c420b02b2492",
-                "reference": "186d605aa6b592bd577e07e0e9a2c420b02b2492",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2",
-                "doctrine/data-fixtures": "*",
-                "symfony/doctrine-bridge": "2.1.*",
-                "doctrine/doctrine-bundle": "1.0.*"
-            },
-            "time": "1345465418",
-            "type": "symfony-bundle",
-            "installation-source": "source",
-            "autoload": {
-                "psr-0": {
-                    "Doctrine\\Bundle\\FixturesBundle": ""
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "http://symfony.com/contributors"
-                },
-                {
-                    "name": "Doctrine Project",
-                    "homepage": "http://www.doctrine-project.org"
-                }
-            ],
-            "description": "Symfony DoctrineFixturesBundle",
-            "homepage": "http://www.doctrine-project.org",
-            "keywords": [
-                "persistence",
-                "Fixture"
-            ]
         },
         {
             "name": "doctrine/orm",
@@ -544,7 +450,7 @@
                 "symfony/framework-bundle": "2.*",
                 "jms/cg": "1.0.0"
             },
-            "time": "2012-01-06 12:50:26",
+            "time": "2012-01-06 20:50:26",
             "type": "symfony-bundle",
             "installation-source": "dist",
             "autoload": {
@@ -586,7 +492,7 @@
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2012-01-06 12:40:52",
+            "time": "2012-01-06 20:40:52",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -688,7 +594,7 @@
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2012-01-06 13:32:49",
+            "time": "2012-01-06 21:32:49",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -1430,12 +1336,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/symfony/symfony.git",
-                "reference": "237629ad64b4b6ce2d2c6ad15a2085f128d6f11e"
+                "reference": "7273311e1fb663ae7f5501f57a52ba9bd4db2ec3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/symfony/zipball/237629ad64b4b6ce2d2c6ad15a2085f128d6f11e",
-                "reference": "237629ad64b4b6ce2d2c6ad15a2085f128d6f11e",
+                "url": "https://github.com/symfony/symfony/zipball/7273311e1fb663ae7f5501f57a52ba9bd4db2ec3",
+                "reference": "7273311e1fb663ae7f5501f57a52ba9bd4db2ec3",
                 "shasum": ""
             },
             "require": {
@@ -1484,7 +1390,7 @@
                 "propel/propel1": "dev-master",
                 "monolog/monolog": "dev-master"
             },
-            "time": "1348209286",
+            "time": "1348414301",
             "type": "library",
             "extra": {
                 "branch-alias": {

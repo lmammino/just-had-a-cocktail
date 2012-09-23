@@ -4,11 +4,15 @@
     <div class="home-banner">
         <div class="row">
             {% if is_granted('ROLE_USER') %}
-                <a href="{{ path('lmammino_jhac_default_cocktail', {'slug': cocktailOfTheDay.getSlug()}) }}" title="Read more about '{{ cocktailOfTheDay.getName() }}'"><img class="left" src="{{ cocktailOfTheDay.getImageSrc() }}" width="150" height="150"/></a>
-                <h2 class="subheader">Cocktail of the day</h2>
-                <a href="{{ path('lmammino_jhac_default_cocktail', {'slug': cocktailOfTheDay.getSlug()}) }}" class="button right round" title="Read more about '{{ cocktailOfTheDay.getName() }}'">Read more...</a>
-                <h3><a href="{{ path('lmammino_jhac_default_cocktail', {'slug': cocktailOfTheDay.getSlug()}) }}" title="Read more about '{{ cocktailOfTheDay.getName() }}'">{{ cocktailOfTheDay.getName() }}</a></h3>
-                <h4 class="subheader">{{ cocktailOfTheDay.getIngredientsList(true) }}</h4>
+                <div class="nine columns">
+                    <a  class="left" href="{{ path('lmammino_jhac_default_cocktail', {'slug': cocktailOfTheDay.getSlug()}) }}" title="Read more about '{{ cocktailOfTheDay.getName() }}'"><img class="left" src="{{ cocktailOfTheDay.getImageSrc() }}" width="150" height="150"/></a>
+                    <h2 class="subheader">Cocktail of the day</h2>
+                    <h3><a href="{{ path('lmammino_jhac_default_cocktail', {'slug': cocktailOfTheDay.getSlug()}) }}" title="Read more about '{{ cocktailOfTheDay.getName() }}'">{{ cocktailOfTheDay.getName() }}</a></h3>
+                    <p>{{ cocktailOfTheDay.getIngredientsList() }}</p>
+                </div>
+                <div class="three columns read-more">
+                    <a href="{{ path('lmammino_jhac_default_cocktail', {'slug': cocktailOfTheDay.getSlug()}) }}" class="button right round" title="Read more about '{{ cocktailOfTheDay.getName() }}'">Read more...</a>
+                </div>
             {% else %}
                 <div class="eight columns">
                     <p>Discover cocktails... bla bla bla</p>

@@ -46,6 +46,6 @@ web1:
   - "rm web/app_dev.php web/config.php"
  before_deploy:
   - "php app/console doctrine:schema:update --force"
-  - "php app/console doctrine:fixtures:load --no-interaction"
+  - "php app/console jhac:cocktails:update"
   - "php app/console cache:clear --env=prod --no-debug"
   - "php app/console assetic:dump"
