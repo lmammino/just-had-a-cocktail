@@ -45,3 +45,4 @@ web1:
   - "php app/console doctrine:schema:update --force"
   - "php app/console doctrine:fixtures:load --no-interaction"
   - "php app/console cache:clear --env=prod --no-debug"
+  - "php app/console assetic:dump"
