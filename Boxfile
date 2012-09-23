@@ -5,7 +5,7 @@ web1:
  document_root: web
  default_gateway: app.php
  index_list: [app.php]
- php_version: 5.4
+ php_version: 5.3.8
  php_extensions:
   - intl
   - mbstring
