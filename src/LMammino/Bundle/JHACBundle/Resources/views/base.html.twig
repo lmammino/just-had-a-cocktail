@@ -28,9 +28,11 @@
     <nav class="top-bar">
         <ul>
             <li class="name"><h1><a href="{{ path('lmammino_jhac_default_index') }}" title="Back to cocktail list">Just had a cocktail</a></h1></li>
+            <li class="toggle-topbar"><a href="#"></a></li>
         </ul>
         <section>
             <ul class="right">
+                <li class="divider"></li>
                 {% if is_granted('ROLE_USER') %}
                     <li><a href="{{ path('fos_user_profile_show') }}"><img src="{{ gravatar(app.user.getEmail(), 30) }}"/> <span>{{ app.user.getUsername() }}</span></a></li>
                     <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
@@ -67,5 +69,15 @@
 {% endblock %}
 
 {% block body_js %}
-{{ parent() }}
+    {{ parent() }}
+    {% javascripts
+        '@LMamminoJHACBundle/Resources/public/js/foundation.min.js'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script type="text/javascript">
+        (function($){ {% block body_js_onload %}
+            $(document).foundationTopBar();
+        {% endblock %} })(jQuery);
+    </script>
 {% endblock %}
