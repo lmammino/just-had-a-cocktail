@@ -17,6 +17,7 @@ web1:
   - tokenizer
   - xml
   - pdo_mysql
+  - curl
   - zip
  php_session_autostart: Off
  php_short_open_tag: Off
