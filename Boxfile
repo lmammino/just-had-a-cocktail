@@ -37,6 +37,7 @@ web1:
   - "echo ' mailer_password: null' >> app/config/parameters.yml"
   - "echo ' locale: en' >> app/config/parameters.yml"
   - "echo ' secret: %app.secret%' >> app/config/parameters.yml"
+  - "curl -s https://getcomposer.org/installer | php"
   - "php composer.phar update"
   - "rm web/app_dev.php web/config.php"
  before_deploy:
