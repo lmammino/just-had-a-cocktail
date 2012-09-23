@@ -1,22 +1,39 @@
 .top-bar
 {
     background-image: url(http://subtlepatterns.com/patterns/txture.png);
-
+    margin:0;
 }
 
 footer
 {
+    background-color: #333;
+    background-image: url(http://subtlepatterns.com/patterns/darkdenim3.png);
+    color: #f1f1f1;
     margin-top: 60px;
+    padding: 20px;
+}
+
+footer a
+{
+    color: #f0f0f0;
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 .home-banner
 {
-    background-color: #b7dff1;
+    background-color: #333;
+    background-image: url(http://subtlepatterns.com/patterns/darkdenim3.png);
+    color: #f1f1f1;
+}
+
+.home-banner h2, .home-banner h4
+{
+    color: #f2f2f2;
 }
 
 .home-banner .row
 {
-    height: 200px;
 }
 
 .title-box

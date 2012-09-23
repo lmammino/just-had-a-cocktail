@@ -1,5 +1,5 @@
 {
-    "hash": "f6636ea9da069426b24318ccbe1862f7",
+    "hash": "822265b04f3e5ecfc9dcc85bca033044",
     "packages": [
         {
             "name": "doctrine/common",
@@ -462,12 +462,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle",
-                "reference": "34f1919ceab96339a8dc6ad7c2b00274a6f499f1"
+                "reference": "1b2d06b0f9a7ef5dbd94433ad15c3ab7cc3eb492"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/FriendsOfSymfony/FOSUserBundle/zipball/34f1919ceab96339a8dc6ad7c2b00274a6f499f1",
-                "reference": "34f1919ceab96339a8dc6ad7c2b00274a6f499f1",
+                "url": "https://github.com/FriendsOfSymfony/FOSUserBundle/zipball/1b2d06b0f9a7ef5dbd94433ad15c3ab7cc3eb492",
+                "reference": "1b2d06b0f9a7ef5dbd94433ad15c3ab7cc3eb492",
                 "shasum": ""
             },
             "require": {
@@ -488,7 +488,7 @@
                 "doctrine/doctrine-bundle": "*",
                 "doctrine/mongodb-odm-bundle": "*"
             },
-            "time": "1347897534",
+            "time": "1348265094",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -544,7 +544,7 @@
                 "symfony/framework-bundle": "2.*",
                 "jms/cg": "1.0.0"
             },
-            "time": "2012-01-04 04:50:26",
+            "time": "2012-01-06 12:50:26",
             "type": "symfony-bundle",
             "installation-source": "dist",
             "autoload": {
@@ -586,7 +586,7 @@
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2012-01-04 04:40:52",
+            "time": "2012-01-06 12:40:52",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -688,7 +688,7 @@
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2012-01-04 05:32:49",
+            "time": "2012-01-06 13:32:49",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -955,25 +955,78 @@
             "time": "1347983448"
         },
         {
+            "name": "ornicar/gravatar-bundle",
+            "version": "dev-master",
+            "target-dir": "Ornicar/GravatarBundle",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/ornicar/GravatarBundle.git",
+                "reference": "994424a846f30f64e324e1b95a21c9f3b4ad237a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/ornicar/GravatarBundle/zipball/994424a846f30f64e324e1b95a21c9f3b4ad237a",
+                "reference": "994424a846f30f64e324e1b95a21c9f3b4ad237a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "symfony/framework-bundle": ">=2.0"
+            },
+            "suggest": {
+                "twig/twig": ">=1.3.0"
+            },
+            "time": "1347006002",
+            "type": "symfony-bundle",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Ornicar\\GravatarBundle\\": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Thibault Duplessis",
+                    "email": "thibault.duplessis@gmail.com",
+                    "homepage": "http://ornicar.github.com"
+                },
+                {
+                    "name": "Henrik Bjørnskov",
+                    "email": "henrik@bjrnskov.dk",
+                    "homepage": "http://henrik.bjrnskov.dk"
+                }
+            ],
+            "description": "This bundles provides a Gravatar API various utilities to work with it in templates",
+            "keywords": [
+                "templating",
+                "gravatar",
+                "twig",
+                "Symfony2"
+            ]
+        },
+        {
             "name": "oryzone/boilerplate-bundle",
             "version": "dev-master",
             "target-dir": "Oryzone/Bundle/BoilerplateBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Oryzone/OryzoneBoilerplateBundle",
-                "reference": "9bca3c21e53bb9a5f8dc472c1945f378182bbd55"
+                "reference": "f583556330f07ef898bbd988844879ddcf63ee0d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/Oryzone/OryzoneBoilerplateBundle/zipball/9bca3c21e53bb9a5f8dc472c1945f378182bbd55",
-                "reference": "9bca3c21e53bb9a5f8dc472c1945f378182bbd55",
+                "url": "https://github.com/Oryzone/OryzoneBoilerplateBundle/zipball/f583556330f07ef898bbd988844879ddcf63ee0d",
+                "reference": "f583556330f07ef898bbd988844879ddcf63ee0d",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2",
                 "symfony/framework-bundle": ">=2.0,<2.2-dev"
             },
-            "time": "1347703222",
+            "time": "1348323293",
             "type": "symfony-bundle",
             "installation-source": "source",
             "autoload": {
@@ -1567,6 +1620,7 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
-        "friendsofsymfony/facebook-bundle": 20
+        "friendsofsymfony/facebook-bundle": 20,
+        "ornicar/gravatar-bundle": 20
     }
 }

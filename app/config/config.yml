@@ -72,3 +72,13 @@ fos_facebook:
       secret: 812f8e59f9ef74a1e84bdce6b7e3de20
       cookie: true
       permissions: [email, user_birthday, user_location, publish_stream]
+
+# services
+services:
+    my.facebook.user:
+        class: LMammino\Bundle\JHACBundle\Security\User\Provider\FacebookProvider
+        arguments:
+            facebook: "@fos_facebook.api"
+            userManager: "@fos_user.user_manager"
+            validator: "@validator"
+            container: "@service_container"

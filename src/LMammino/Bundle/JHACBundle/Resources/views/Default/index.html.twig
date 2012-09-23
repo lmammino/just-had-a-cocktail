@@ -3,20 +3,23 @@
 {% block content %}
     <div class="home-banner">
         <div class="row">
-            {% if app.user %}
-                <h2>Cocktail of the day</h2>
-                <h2 class="subheader">{{ cocktailOfTheDay.getName() }}</h2>
-                <img class="left" src="{{ cocktailOfTheDay.getImageSrc() }}" width="150" height="150"/>
-                {% if cocktailOfTheDay.getIngredients() %}
-                    <h4 class="subheader">Ingredients</h4>
-                    <ul>
-                        {% for ingredient, quantity in cocktailOfTheDay.getIngredients() %}
-                        <li>{{ quantity }} of {{ ingredient }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
+            {% if is_granted('ROLE_USER') %}
+                <a href="{{ path('lmammino_jhac_default_cocktail', {'slug': cocktailOfTheDay.getSlug()}) }}" title="Read more about '{{ cocktailOfTheDay.getName() }}'"><img class="left" src="{{ cocktailOfTheDay.getImageSrc() }}" width="150" height="150"/></a>
+                <h2 class="subheader">Cocktail of the day</h2>
+                <a href="{{ path('lmammino_jhac_default_cocktail', {'slug': cocktailOfTheDay.getSlug()}) }}" class="button right round" title="Read more about '{{ cocktailOfTheDay.getName() }}'">Read more...</a>
+                <h3><a href="{{ path('lmammino_jhac_default_cocktail', {'slug': cocktailOfTheDay.getSlug()}) }}" title="Read more about '{{ cocktailOfTheDay.getName() }}'">{{ cocktailOfTheDay.getName() }}</a></h3>
+                <h4 class="subheader">{{ cocktailOfTheDay.getIngredientsList(true) }}</h4>
             {% else %}
-                <p>Discover cocktails... bla bla bla</p>
+                <div class="eight columns">
+                    <p>Discover cocktails... bla bla bla</p>
+                </div>
+                <div class="four columns">
+                    <h2><a href="{{ path('fos_user_registration_register') }}">Register</a></h2>
+                    <p>[email]</p>
+                    <p>[password]</p>
+                    <p>[CONNECT WITH FACEBOOK]</p>
+                    <p>Already got an account? So just <a href="{{ path('fos_user_security_login') }}">Login</a></p>
+                </div>
             {% endif %}
         </div>
     </div>

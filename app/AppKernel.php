@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new FOS\FacebookBundle\FOSFacebookBundle(),
             new Oryzone\Bundle\BoilerplateBundle\OryzoneBoilerplateBundle(),
             new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
+            new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
 
             new LMammino\Bundle\JHACBundle\LMamminoJHACBundle(),
         );

@@ -1,11 +1,15 @@
 {% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
 
-{% block head_title %}Just had a cocktail!{% endblock %}
+{%  set bp_html_attributes = 'xmlns:fb="http://www.facebook.com/2008/fbml"' %}
+{% set bp_head_attributes = 'prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# lmammino-jhac: http://ogp.me/ns/fb/lmammino-jhac#"' %}
+
+{% block head_title %}Just had a cocktail{% endblock %}
 {% block head_meta_description %}Website showing most famous cocktails history and recipes, let's you shout on facebook when you drink some{% endblock %}
 {% block head_meta_keywords %}cocktail, cocktails, drink, martini, aperol, spritz, long island, mojito, shake, bar{% endblock %}
 
 {% block head_meta %}
     {{ parent() }}
+    <meta property="fb:app_id" content="264941376960009" />
     <meta property="og:image" content="{% block head_meta_image %}/bundles/lmamminojhac/images/Americano-cocktail-fb.png{% endblock %}"/>
 {% endblock %}
 
@@ -27,31 +31,41 @@
         </ul>
         <section>
             <ul class="right">
-                <li><a href="#">Login</a></li>
+                {% if is_granted('ROLE_USER') %}
+                    <li><a href="{{ path('fos_user_profile_show') }}"><img src="{{ gravatar(app.user.getEmail(), 30) }}"/> <span>{{ app.user.getUsername() }}</span></a></li>
+                    <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+                {% else %}
+                    <li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
+                    <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+                {% endif %}
             </ul>
         </section>
     </nav>
 {% endblock %}
 
 {% block body_container_main %}
-    <div class="row">
-        <div class="alert-box alert">This website is under development!</div>
-    </div>
     {% block content %}{% endblock %}
 {% endblock %}
 
 {% block body_container_footer %}
     <div class="row">
-        <div class="panel">
             <p>
                 © 2012 <a href="https://github.com/lmammino" title="lmammino's Github profile">lmammino</a> (<a href="http://twitter.com/loige" title="lmammino's twitter profile">@loige</a> on Twitter),
                 Cocktails icons by <a href="http://www.iconlee.com" title="IconLee">IconLee</a>,
                 Cocktails informations by <a href="http://en.wikipedia.org/wiki/List_of_cocktails" title="Wikipedia">Wikipedia</a>.
             </p>
             <p>
-                Built with ♥ and <a href="http://symfony.com">Symfony2</a>. Using <a href="https://github.com/FriendsOfSymfony/FOSUserBundle">FOSUserBundle</a>, <a href="https://github.com/FriendsOfSymfony/FOSFacebookBundle">FOSFacebookBundle</a>, <a href="https://github.com/Oryzone/OryzoneBoilerplateBundle">OryzoneBoilerplateBundle</a>, <a href="https://github.com/KnpLabs/KnpMarkdownBundle">KnpMarkdownBundle</a> <br/>
+                Built with ♥ and <a href="http://symfony.com">Symfony2</a>.
+                Using <a href="https://github.com/FriendsOfSymfony/FOSUserBundle">FOSUserBundle</a>,
+                      <a href="https://github.com/FriendsOfSymfony/FOSFacebookBundle">FOSFacebookBundle</a>,
+                      <a href="https://github.com/Oryzone/OryzoneBoilerplateBundle">OryzoneBoilerplateBundle</a>,
+                      <a href="https://github.com/KnpLabs/KnpMarkdownBundle">KnpMarkdownBundle</a>,
+                      <a href="https://github.com/ornicar/GravatarBundle">GravatarBundle</a>.<br/>
                 Source code available on <a href="https://github.com/lmammino/just-had-a-cocktail">Github</a>! Yes, you can submit a <a href="https://github.com/lmammino/just-had-a-cocktail/pull/new/master">pull request</a> to improve this website!
             </p>
-        </div>
     </div>
+{% endblock %}
+
+{% block body_js %}
+{{ parent() }}
 {% endblock %}

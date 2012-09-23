@@ -38,13 +38,6 @@ class Cocktail
     private $slug;
 
     /**
-     * @var string $type
-     *
-     * @ORM\Column(name="type", type="string", length=255, nullable=true)
-     */
-    private $type;
-
-    /**
      * @var string $description
      *
      * @ORM\Column(name="description", type="text", nullable=true)
@@ -169,6 +162,25 @@ class Cocktail
     }
 
     /**
+     * Get ingredients list as string
+     *
+     * @param bool $showQuantities
+     * @return string
+     */
+    public function getIngredientsList($showQuantities = false)
+    {
+        $list = array();
+        foreach($this->ingredients as $ingredient => $quantity)
+        {
+            if($showQuantities)
+                $list[] = sprintf('%s (%s)', $ingredient, $quantity);
+            else
+                $list[] = $ingredient;
+        }
+        return implode(', ', $list);
+    }
+
+    /**
      * @param string $preparation
      */
     public function setPreparation($preparation)
@@ -182,22 +194,6 @@ class Cocktail
     public function getPreparation()
     {
         return $this->preparation;
-    }
-
-    /**
-     * @param string $type
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-    }
-
-    /**
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
     }
 
     /**
