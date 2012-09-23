@@ -1,0 +1,45 @@
+web1:
+ shared_writable_dirs:
+  - app/cache
+  - app/logs
+ document_root: web
+ default_gateway: app.php
+ index_list: [app.php]
+ php_version: 5.4
+ php_extensions:
+  - intl
+  - mbstring
+  - xsl
+  - apc
+  - mysql
+  - posix
+  - iconv
+  - tokenizer
+  - xml
+  - pdo_mysql
+  - zip
+ php_session_autostart: Off
+ php_short_open_tag: Off
+ php_date_timezone: "Europe/Rome"
+ magic_quotes_gpc: Off
+ after_build:
+  - "rm app/config/parameters.yml"
+  - "echo 'parameters:' >> app/config/parameters.yml"
+  - "echo ' database_driver: pdo_mysql' >> app/config/parameters.yml"
+  - "echo ' database_host: %database.host%' >> app/config/parameters.yml"
+  - "echo ' database_port: %database.port%' >> app/config/parameters.yml"
+  - "echo ' database_name: %database.name%' >> app/config/parameters.yml"
+  - "echo ' database_user: %database.user%' >> app/config/parameters.yml"
+  - "echo ' database_password: %database.password%' >> app/config/parameters.yml"
+  - "echo ' mailer_transport: smtp' >> app/config/parameters.yml"
+  - "echo ' mailer_host: localhost' >> app/config/parameters.yml"
+  - "echo ' mailer_user: null' >> app/config/parameters.yml"
+  - "echo ' mailer_password: null' >> app/config/parameters.yml"
+  - "echo ' locale: en' >> app/config/parameters.yml"
+  - "echo ' secret: %app.secret%' >> app/config/parameters.yml"
+  - "php composer.phar update"
+  - "rm web/app_dev.php web/config.php"
+ before_deploy:
+  - "php app/console doctrine:schema:update --force"
+  - "php app/console doctrine:fixtures:load --no-interaction"
+  - "php app/console cache:clear --env=prod --no-debug"
