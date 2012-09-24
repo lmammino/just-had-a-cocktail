@@ -20,7 +20,8 @@ class AppKernel extends Kernel
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-            new FOS\FacebookBundle\FOSFacebookBundle(),
+            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
+
             new Oryzone\Bundle\BoilerplateBundle\OryzoneBoilerplateBundle(),
             new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
             new Ornicar\GravatarBundle\OrnicarGravatarBundle(),

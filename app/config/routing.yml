@@ -1,3 +1,15 @@
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix: /oauth/redirect
+
+hwi_oauth_security:
+    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    prefix: /oauth/login
+
+hwi_oauth_connect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
+    prefix: /oauth/connect
+
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
@@ -16,6 +28,12 @@ fos_user_resetting:
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
+
+facebook_login:
+    pattern: /login/check-facebook
+
+twitter_login:
+    pattern: /login/check-twitter
 
 l_mammino_jhac:
     resource: "@LMamminoJHACBundle/Controller/"

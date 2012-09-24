@@ -39,6 +39,13 @@ class User extends BaseUser
      */
     protected $facebookId;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="facebookAccessToken", type="string", length=255, nullable=true)
+     */
+    protected $facebookAccessToken;
+
     public function __construct()
     {
         parent::__construct();
@@ -55,12 +62,25 @@ class User extends BaseUser
         parent::unserialize($parentData);
     }
 
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param string $facebookId
+     */
+    public function setFacebookId($facebookId)
+    {
+        $this->facebookId = $facebookId;
+    }
+
     /**
      * @return string
      */
-    public function getFirstname()
+    public function getFacebookId()
     {
-        return $this->firstname;
+        return $this->facebookId;
     }
 
     /**
@@ -74,9 +94,9 @@ class User extends BaseUser
     /**
      * @return string
      */
-    public function getLastname()
+    public function getFirstname()
     {
-        return $this->lastname;
+        return $this->firstname;
     }
 
     /**
@@ -88,6 +108,14 @@ class User extends BaseUser
     }
 
     /**
+     * @return string
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+
+    /**
      * Get the full name of the user (first + last name)
      * @return string
      */
@@ -96,42 +124,4 @@ class User extends BaseUser
         return $this->getFirstName() . ( $this->getLastname() ?  (' '.$this->getLastname()) : '' );
     }
 
-    /**
-     * @param string $facebookId
-     * @return void
-     */
-    public function setFacebookId($facebookId)
-    {
-        $this->facebookId = $facebookId;
-        $this->setUsername($facebookId);
-        $this->salt = '';
-    }
-
-    /**
-     * @return string
-     */
-    public function getFacebookId()
-    {
-        return $this->facebookId;
-    }
-
-    /**
-     * @param Array
-     */
-    public function setFBData($fbdata)
-    {
-        if (isset($fbdata['id'])) {
-            $this->setFacebookId($fbdata['id']);
-            $this->addRole('ROLE_FACEBOOK');
-        }
-        if (isset($fbdata['first_name'])) {
-            $this->setFirstname($fbdata['first_name']);
-        }
-        if (isset($fbdata['last_name'])) {
-            $this->setLastname($fbdata['last_name']);
-        }
-        if (isset($fbdata['email'])) {
-            $this->setEmail($fbdata['email']);
-        }
-    }
 }

@@ -20,6 +20,7 @@
         "jms/di-extra-bundle": "1.1.*",
 
         "friendsofsymfony/user-bundle": "*",
+        "hwi/oauth-bundle": "*",
         "friendsofsymfony/facebook-bundle": "dev-master",
         "oryzone/boilerplate-bundle": "*",
         "knplabs/knp-markdown-bundle": "*",

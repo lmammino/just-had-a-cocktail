@@ -21,6 +21,8 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+    globals:
+        app_url: %app_url%
 
 # Assetic Configuration
 assetic:
@@ -65,20 +67,40 @@ fos_user:
     user_class: LMammino\Bundle\JHACBundle\Entity\User
 
 #FOSFacebookBundle
-fos_facebook:
-      file:   %kernel.root_dir%/../vendor/facebook/php-sdk/src/base_facebook.php
-      alias:  facebook
-      app_id: 264941376960009
-      secret: 812f8e59f9ef74a1e84bdce6b7e3de20
-      cookie: true
-      permissions: [email, user_birthday, user_location, publish_stream]
+#fos_facebook:
+#      file:   %kernel.root_dir%/../vendor/facebook/php-sdk/src/base_facebook.php
+#      alias:  facebook
+#      app_id: %facebook_client_id%
+#      secret: %facebook_client_secret%
+#      cookie: true
+#      permissions: [email, user_birthday, user_location, publish_stream, publish_actions]
 
-# services
-services:
-    my.facebook.user:
-        class: LMammino\Bundle\JHACBundle\Security\User\Provider\FacebookProvider
-        arguments:
-            facebook: "@fos_facebook.api"
-            userManager: "@fos_user.user_manager"
-            validator: "@validator"
-            container: "@service_container"
+#HWIOauthBundle
+hwi_oauth:
+    resource_owners:
+        facebook:
+            type:                facebook
+            client_id:           %facebook_client_id%
+            client_secret:       %facebook_client_secret%
+            scope:               "email, user_birthday, user_location, publish_stream"
+            user_response_class: \HWI\Bundle\OAuthBundle\OAuth\Response\AdvancedPathUserResponse
+            paths:
+                identifier: username
+                nickname: username
+                first_name: firstname
+                last_name: lastname
+                email: email
+                accessToken: facebookAccessToken
+        twitter:
+            type:                twitter
+            client_id:           %twitter_client_id%
+            client_secret:       %twitter_client_secret%
+    fosub:
+        username_iterations: 30
+        # mapping between resource owners (see below) and properties
+        properties:
+            #github: githubId
+            #google: googleId
+            facebook: facebookId
+    firewall_name: main
+    connect: ~

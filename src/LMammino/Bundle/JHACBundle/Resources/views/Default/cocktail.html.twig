@@ -5,13 +5,13 @@
 {% block head_meta %}
     {{ parent() }}
     <meta property="og:type"   content="lmammino-jhac:cocktail" />
-    <meta property="og:url"    content="{{ cocktail.computeShortDescription() }}" />
+    <meta property="og:url"    content="{{ app_url~path('lmammino_jhac_default_cocktail', {'slug':cocktail.getSlug()}) }}" />
     <meta property="og:title"  content="{{ cocktail.getName() }}" />
 {% endblock %}
 
 {% block head_meta_description %}{{ cocktail.computeShortDescription() }}{% endblock %}
 {% block head_meta_keywords %}cocktail, cocktails, drink, shake, bar, {{ cocktail.computeKeywords() }}{% endblock %}
-{% block head_meta_image %}{{ cocktail.getImageSrc('fb') }}{% endblock %}
+{% block head_meta_image %}{{ app_url~cocktail.getImageSrc('fb') }}{% endblock %}
 
 {% block content %}
 

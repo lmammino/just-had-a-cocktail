@@ -10,7 +10,7 @@
 {% block head_meta %}
     {{ parent() }}
     <meta property="fb:app_id" content="264941376960009" />
-    <meta property="og:image" content="{% block head_meta_image %}/bundles/lmamminojhac/images/Americano-cocktail-fb.png{% endblock %}"/>
+    <meta property="og:image" content="{% block head_meta_image %}{{ app_url }}/bundles/lmamminojhac/images/Americano-cocktail-fb.png{% endblock %}"/>
 {% endblock %}
 
 {% block head_css %}
@@ -23,6 +23,10 @@
     <link rel="stylesheet"  href="{{ asset_url }}" >
     {% endstylesheets %}
 {% endblock %}
+
+{%  block body %}
+    {{ parent() }}
+{%  endblock %}
 
 {% block body_container_header %}
     <nav class="top-bar">
@@ -39,6 +43,7 @@
                 {% else %}
                     <li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
                     <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+                    <li></li>
                 {% endif %}
             </ul>
         </section>

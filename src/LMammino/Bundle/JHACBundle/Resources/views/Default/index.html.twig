@@ -21,7 +21,7 @@
                     <h2><a href="{{ path('fos_user_registration_register') }}">Register</a></h2>
                     <p>[email]</p>
                     <p>[password]</p>
-                    <p>[CONNECT WITH FACEBOOK]</p>
+                    <p><a href="{{ path('hwi_oauth_service_redirect', {'service':'facebook'}) }}">Connect with Facebook</a></p>
                     <p>Already got an account? So just <a href="{{ path('fos_user_security_login') }}">Login</a></p>
                 </div>
             {% endif %}
