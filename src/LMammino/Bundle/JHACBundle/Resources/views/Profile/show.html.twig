@@ -1,0 +1,40 @@
+{% extends "LMamminoJHACBundle::base.html.twig" %}
+
+{% block head_title %}{{ user.getFullName() }}'s profile - {{ parent() }}{% endblock %}
+
+{% block head_meta_description %}{{ user.getFullName() }}'s profile{% endblock %}
+{% block head_meta_keywords %}cocktail, cocktails, drink, shake, bar, {{ user.getFullName() }}{% endblock %}
+{% block head_meta_image %}{{ gravatar(app.user.getEmail(), 200) }}{% endblock %}
+
+{% block content %}
+
+    <div class="row title-box">
+        <div class="eight columns offset-by-four">
+            <h2 id="cocktail-name">{{ user.getFullName() }}</h2>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="four columns">
+            <p class="profile-image">
+                <img src="{{ gravatar(app.user.getEmail(), 200) }}" alt="{{ user.getFullName() }}'s profile picture"/>
+            </p>
+
+            <div class="actions-box">
+                {% if user.isConnectedWithFacebook %}
+                <a class="button round button-had-it" href="{{ user.getFacebookProfilePageUrl() }}">See Facebook Profile</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="eight columns">
+            <h3 id="description" class="subheader">Description</h3>
+            <div class="user-description">
+                DESCRIPTION
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

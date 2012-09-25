@@ -2,6 +2,10 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
 
+#additional parameters
+parameters:
+    hwi_oauth.user.provider.fosub_bridge.class: LMammino\Bundle\JHACBundle\Security\Core\User\FOSUBUserProvider
+
 framework:
     #esi:             ~
     #translator:      { fallback: %locale% }

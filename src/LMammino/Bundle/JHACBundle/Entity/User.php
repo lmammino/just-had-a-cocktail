@@ -124,4 +124,43 @@ class User extends BaseUser
         return $this->getFirstName() . ( $this->getLastname() ?  (' '.$this->getLastname()) : '' );
     }
 
+    /**
+     * @param string $facebookAccessToken
+     */
+    public function setFacebookAccessToken($facebookAccessToken)
+    {
+        $this->facebookAccessToken = $facebookAccessToken;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFacebookAccessToken()
+    {
+        return $this->facebookAccessToken;
+    }
+
+    /**
+     * Checks if the user is connected with facebook
+     *
+     * @return bool
+     */
+    public function isConnectedWithFacebook()
+    {
+        return ($this->facebookId !== NULL);
+    }
+
+    /**
+     * Gets the url of the user profile page on facebook
+     *
+     * @return string|NULL
+     */
+    public function getFacebookProfilePageUrl()
+    {
+        if(!$this->isConnectedWithFacebook())
+            return NULL;
+
+        return 'http://www.facebook.com/'.$this->facebookId;
+    }
+
 }

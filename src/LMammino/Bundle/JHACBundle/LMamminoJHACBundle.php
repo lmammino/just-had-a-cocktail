@@ -11,4 +11,9 @@ class LMamminoJHACBundle extends Bundle
         return '/bundles/lmamminojhac/images/';
     }
 
+    public function getParent()
+    {
+        return 'FOSUserBundle';
+    }
+
 }

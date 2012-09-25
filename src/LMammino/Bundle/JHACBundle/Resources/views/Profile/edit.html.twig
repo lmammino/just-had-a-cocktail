@@ -1,0 +1,61 @@
+{% extends "LMamminoJHACBundle::base.html.twig" %}
+
+{% block head_title %}{{ user.getFullName() }}'s profile - {{ parent() }}{% endblock %}
+
+{% block head_meta_description %}{{ user.getFullName() }}'s profile{% endblock %}
+{% block head_meta_keywords %}cocktail, cocktails, drink, shake, bar, {{ user.getFullName() }}{% endblock %}
+{% block head_meta_image %}{{ gravatar(app.user.getEmail(), 200) }}{% endblock %}
+
+{% block content %}
+
+    <div class="row title-box">
+        <div class="eight columns offset-by-four">
+            <h2 id="cocktail-name">{{ user.getFullName() }}</h2>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="four columns">
+            <p class="profile-image">
+                <img src="{{ gravatar(app.user.getEmail(), 200) }}" alt="{{ user.getFullName() }}'s profile picture"/>
+            </p>
+            <p class="small">Your avatar is fetched from <a href="http://www.gravatar.com">Gravatar</a>, by using the provided email address ({{ user.getEmail() }}).</p>
+
+            <div class="actions-box">
+                {% if user.isConnectedWithFacebook %}
+                    <p class="small">You've connected your <a href="{{ user.getFacebookProfilePageUrl() }}">Facebook profile</a> to this application. (<a href="javascript:$('.fb-connection-details').toggle();">Connection details</a>)</p>
+                    <div class="fb-connection-details" style="display:none">
+                        <p>
+                            <em>Connection details</em><br/>
+                            <strong>UserId:</strong> {{ user.getFacebookId() }}<br/>
+                            <strong>AccessToken:</strong> {{ user.getFacebookAccessToken() }}
+                        </p>
+                    </div>
+                    <p>
+                        <a class="button round button-had-it alert" href="#">Disconnect from Facebook</a>
+                    </p>
+                {% else %}
+                    <p class="small">You can connect your Facebook profile to this application. Doing this you can notify your Facebook friends about things you do with this application</p>
+                    <p>
+                        <a class="button round button-had-it" href="{{ path('hwi_oauth_service_redirect', {'service':'facebook'}) }}">Connect with Facebook</a>
+                    </p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="eight columns">
+            <h3 id="description" class="subheader">Modifica profilo</h3>
+            <div class="user-description">
+                <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
+                    {{ form_widget(form) }}
+                    <div>
+                        <input type="submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
