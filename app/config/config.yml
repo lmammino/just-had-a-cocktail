@@ -89,12 +89,11 @@ hwi_oauth:
             scope:               "email, user_birthday, user_location, publish_stream"
             user_response_class: \HWI\Bundle\OAuthBundle\OAuth\Response\AdvancedPathUserResponse
             paths:
-                identifier: username
+                identifier: id
                 nickname: username
                 first_name: firstname
                 last_name: lastname
                 email: email
-                accessToken: facebookAccessToken
         twitter:
             type:                twitter
             client_id:           %twitter_client_id%

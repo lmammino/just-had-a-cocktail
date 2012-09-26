@@ -8,6 +8,30 @@ use HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider as BaseClass;
 class FOSUBUserProvider extends BaseClass
 {
 
+/**
+ * {@inheritdoc}
+ */
+public function loadUserByOAuthUserResponse(UserResponseInterface $response)
+{
+    $user = parent::loadUserByOAuthUserResponse($response);
+
+    $serviceName = $response->getResourceOwner()->getName();
+    $serviceAccessTokenSetter = 'set' . ucfirst($serviceName) . 'AccessToken';
+    $serviceAccessTokenGetter = 'get' . ucfirst($serviceName) . 'AccessToken';
+
+    if ( method_exists($user, $serviceAccessTokenSetter) &&
+         method_exists($user, $serviceAccessTokenGetter) &&
+         $user->$serviceAccessTokenGetter() !== $response->getAccessToken()
+       )
+    {
+        $user->$serviceAccessTokenSetter($response->getAccessToken());
+        $this->userManager->updateUser($user);
+    }
+
+    return $user;
+}
+
+
     /**
      * {@inheritDoc}
      */

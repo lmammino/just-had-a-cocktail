@@ -3,6 +3,16 @@ p.small
     font-size: small;
 }
 
+.modal
+{
+    color: #222;
+}
+
+.word-break
+{
+    word-break: break-all;
+}
+
 .top-bar
 {
     background-image: url(http://subtlepatterns.com/patterns/txture.png);

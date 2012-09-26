@@ -24,14 +24,7 @@
 
             <div class="actions-box">
                 {% if user.isConnectedWithFacebook %}
-                    <p class="small">You've connected your <a href="{{ user.getFacebookProfilePageUrl() }}">Facebook profile</a> to this application. (<a href="javascript:$('.fb-connection-details').toggle();">Connection details</a>)</p>
-                    <div class="fb-connection-details" style="display:none">
-                        <p>
-                            <em>Connection details</em><br/>
-                            <strong>UserId:</strong> {{ user.getFacebookId() }}<br/>
-                            <strong>AccessToken:</strong> {{ user.getFacebookAccessToken() }}
-                        </p>
-                    </div>
+                    <p class="small">You've connected your <a href="{{ user.getFacebookProfilePageUrl() }}">Facebook profile</a> to this application. (<a id="facebookConnectionDetailButton" href="#">Connection details</a>)</p>
                     <p>
                         <a class="button round button-had-it alert" href="#">Disconnect from Facebook</a>
                     </p>
@@ -57,5 +50,22 @@
         </div>
 
     </div>
+{% endblock %}
 
+{% block body_js_onload %}
+    {{ parent() }}
+    $('#facebookConnectionDetailButton').click(function(){
+        $('#facebookConnectionDetailModal').reveal();
+        return false;
+    });
+{% endblock %}
+
+{% block modals %}
+    <div id="facebookConnectionDetailModal" class="reveal-modal medium modal">
+        <h2>Facebook connection details</h2>
+        <p><strong>UserId:</strong> {{ user.getFacebookId() }}</p>
+        <p><strong>AccessToken:</strong></p>
+        <div class="panel word-break">{{ user.getFacebookAccessToken() }}</div>
+        <a class="close-reveal-modal">&#215;</a>
+    </div>
 {% endblock %}
