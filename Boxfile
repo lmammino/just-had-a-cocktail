@@ -56,5 +56,12 @@ web1:
   - "php app/console assetic:dump"
   - "php app/console sonata:notification:cleanup --env=prod"
  cron:
-  - "* * * * *": "php app/console sonata:notification:start --env=dev --iteration=50"
   - "0 0 * * *": "php app/console sonata:notification:cleanup --env=prod"
+
+worker1:
+  exec: "php app/console sonata:notification:start --env=prod"
+  start:
+   ready: "Initialize backend ... done!"
+   timeout: 10
+  stop:
+   signal: SIGQUIT
