@@ -1,6 +1,6 @@
 {% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
 
-{%  set bp_html_attributes = 'xmlns:fb="http://www.facebook.com/2008/fbml"' %}
+{% set bp_html_attributes = 'xmlns:fb="http://www.facebook.com/2008/fbml"' %}
 {% set bp_head_attributes = 'prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# lmammino-jhac: http://ogp.me/ns/fb/lmammino-jhac#"' %}
 
 {% block head_title %}Just had a cocktail{% endblock %}
@@ -43,7 +43,6 @@
                 {% else %}
                     <li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
                     <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
-                    <li></li>
                 {% endif %}
             </ul>
         </section>
@@ -51,6 +50,14 @@
 {% endblock %}
 
 {% block body_container_main %}
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div class="row" style="margin-top: 20px;">
+            <div class="alert-box success">
+                {{ flashMessage }}
+                <a href="" class="close">&times;</a>
+            </div>
+        </div>
+    {% endfor %}
     {% block content %}{% endblock %}
 {% endblock %}
 
@@ -84,6 +91,7 @@
     <script type="text/javascript">
         (function($){ {% block body_js_onload %}
             $(document).foundationTopBar();
+            $(document).foundationAlerts();
         {% endblock %} })(jQuery);
     </script>
 {% endblock %}

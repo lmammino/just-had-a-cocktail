@@ -1,0 +1,75 @@
+{% extends "LMamminoJHACBundle::base.html.twig" %}
+
+{% block head_title %}Login - {{ parent() }}{% endblock %}
+
+{% block head_meta_description %}login page{% endblock %}
+{% block head_meta_keywords %}cocktail, cocktails, drink, shake, bar, login{% endblock %}
+
+{%block body_container%}
+    <div id="container">
+        <header>
+            {% block body_container_header %}{{ parent() }}{% endblock %}
+        </header>
+        <div role="main">
+            {% block body_container_main %}{{ parent() }}{% endblock %}
+        </div>
+    </div>
+{%endblock body_container%}
+
+{% block content %}
+<div class="row" style="margin-top:20px">
+    {% if error %}
+        <div class="row">
+            <div class="alert-box alert">
+                {{ error|trans({}, 'FOSUserBundle') }} <a href="" class="close">&times;</a>
+            </div>
+        </div>
+    {% endif %}
+    <div class="row">
+        <div class="six columns centered">
+            <div class="panel radius">
+                <h4 class="subheader">Login</h4>
+                <form action="{{ path("fos_user_security_check") }}" method="post">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+                    <div class="row">
+                        <div class="two mobile-one columns">
+                            <label class="right inline" for="username">Username</label>
+                        </div>
+                        <div class="ten mobile-three columns">
+                            <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="two mobile-one columns">
+                            <label class="right inline" for="password">Password</label>
+                        </div>
+                        <div class="ten mobile-three columns">
+                            <input type="password" id="password" name="_password" required="required" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="ten mobile-three columns offset-by-two">
+                            <input class="left" type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                            <label for="remember_me"> Remember me</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <input class="button right" type="submit" id="_submit" name="_submit" value="Login" />
+                    </div>
+                </form>
+
+                <div class="row">
+                    <div class="ten mobile-three columns offset-by-two">
+                        <a class="button center" href="{{ path('hwi_oauth_service_redirect', {'service':'facebook'}) }}">Login with Facebook</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

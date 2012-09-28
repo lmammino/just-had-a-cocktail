@@ -6,6 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+
+use LMammino\Bundle\JHACBundle\Entity\User;
+use LMammino\Bundle\JHACBundle\Facebook\Client;
 
 class DefaultController extends Controller
 {
@@ -22,6 +26,7 @@ class DefaultController extends Controller
     /**
      * @Route("/")
      * @Template()
+     * @Method("GET")
      */
     public function indexAction()
     {
@@ -38,9 +43,12 @@ class DefaultController extends Controller
     /**
      * @Route("/cocktail/{slug}")
      * @Template()
+     * @Method("GET|POST")
      */
     public function cocktailAction($slug)
     {
+        $user = $this->get('security.context')->getToken()->getUser();
+
         $cocktail = $this->getCocktailRepository()->findOneBy(array(
             'slug' => $slug
         ));
@@ -48,9 +56,36 @@ class DefaultController extends Controller
         if( !$cocktail instanceof \LMammino\Bundle\JHACBundle\Entity\Cocktail )
             throw $this->createNotFoundException('Cocktail not found');
 
+        $formHadIt = $this->createFormBuilder(array('action' => 'hadIt'))
+                          ->add('action', 'hidden')
+                          ->getForm();
+
+        $request = $this->getRequest();
+        if($request->getMethod() == 'POST')
+        {
+            $formHadIt->bind($request);
+            if( $formHadIt->isValid() &&
+                $formHadIt->get('action')->getData() == 'hadIt' &&
+                $user instanceof User)
+            {
+                if($user->isConnectedWithFacebook())
+                {
+                    $cocktailUrl = 'http://just-had-a-cocktail.pagodabox.com'.$cocktail->getRelativeUrl();
+                    $facebook = new Client($user->getFacebookAccessToken());
+                    $facebook->hadCocktail($cocktailUrl);
+                }
+
+                // adds data to session for the notice
+                $this->get('session')->getFlashBag()->set('notice', sprintf('Now the whole world knows you just had "%s"! ;)', $cocktail->getName()));
+                // redirects
+                return $this->redirect($this->generateUrl('lmammino_jhac_default_cocktail', array('slug'=> $cocktail->getSlug())));
+            }
+        }
+
         return array
         (
-            'cocktail' => $cocktail
+            'cocktail' => $cocktail,
+            'formHadIt' => $formHadIt->createView()
         );
     }
 

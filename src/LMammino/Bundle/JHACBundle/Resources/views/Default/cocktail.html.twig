@@ -34,7 +34,14 @@
             </p>
 
             <div class="actions-box">
-                <a class="button round button-had-it" href="#">Just had it!</a>
+            {% if app.user %}
+                <form method="POST" action="{{ path('lmammino_jhac_default_cocktail',{'slug': cocktail.getSlug()}) }}">
+                    {{ form_rest(formHadIt) }}
+                    <button type="submit" class="button round button-had-it" href="#">Just had it!</button>
+                </form>
+            {% else %}
+                <p><a href="{{ path('fos_user_registration_register') }}">Register</a> to say you just had this cocktail!</p>
+            {% endif %}
             </div>
         </div>
 
