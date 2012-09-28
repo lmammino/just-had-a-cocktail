@@ -19,11 +19,29 @@ class Client
 
     protected $accessToken;
 
-    public function __construct($accessToken)
+    public function __construct($accessToken = NULL)
     {
         $this->accessToken = $accessToken;
         $this->buzz = new Buzz();
         $this->buzz->setTimeout(15000);
+    }
+
+    public function setAccessToken($accessToken)
+    {
+        $this->accessToken = $accessToken;
+    }
+
+    public function getAccessToken()
+    {
+        return $this->accessToken;
+    }
+
+    /**
+     * @return \Buzz\Client\Curl
+     */
+    public function getBuzz()
+    {
+        return $this->buzz;
     }
 
     /**
@@ -38,11 +56,17 @@ class Client
      *
      * @param $cocktailUrl
      */
-    public function hadCocktail($cocktailUrl)
+    public function hadCocktail($cocktailUrl, $timestamp = NULL)
     {
         $request = new FormRequest(Request::METHOD_POST, 'me/lmammino-jhac:had', self::$GRAPH_HOST);
         $request->setField('access_token', $this->accessToken);
         $request->setField('cocktail', $cocktailUrl);
+        if($timestamp)
+        {
+            $date = date('c', $timestamp);
+            $request->setField('start_time', $date);
+            $request->setField('end_time', $date);
+        }
 
         $response = new Response();
 

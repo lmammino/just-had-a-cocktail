@@ -42,6 +42,7 @@ web1:
   - "echo ' locale: en' >> app/config/parameters.yml"
   - "echo ' secret: %app.secret%' >> app/config/parameters.yml"
   - "echo ' app_url: %app.url%' >> app/config/parameters.yml"
+  - "echo ' prod_url: %app.url%' >> app/config/parameters.yml"
   - "echo ' facebook_client_id: %facebook.client.id' >> app/config/parameters.yml"
   - "echo ' facebook_client_secret: %facebook.client.secret' >> app/config/parameters.yml"
   - "echo ' twitter_client_id: %twitter.client.id' >> app/config/parameters.yml"
@@ -54,3 +55,7 @@ web1:
   - "php app/console jhac:cocktails:update"
   - "php app/console cache:clear --env=prod --no-debug"
   - "php app/console assetic:dump"
+  - "php app/console sonata:notification:cleanup --env=prod"
+ cron:
+  - "* * * * *": "php app/console sonata:notification:start --env=dev --iteration=50"
+  - "0 0 * * *": "php app/console sonata:notification:cleanup --env=prod"

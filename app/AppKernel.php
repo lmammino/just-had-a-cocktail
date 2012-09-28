@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
 
             new Oryzone\Bundle\BoilerplateBundle\OryzoneBoilerplateBundle(),
+            new Sonata\NotificationBundle\SonataNotificationBundle(),
             new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
             new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
 

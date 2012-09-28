@@ -255,4 +255,17 @@ class Cocktail
         $keywords = array_merge($keywords, array_keys($this->ingredients));
         return implode($separator, $keywords);
     }
+
+    /**
+     * Converts the current entity to array
+     */
+    public function toArray()
+    {
+        return array(
+            'id' => $this->id,
+            'name' => $this->name,
+            'slug' => $this->slug,
+            'relativeUrl' => $this->getRelativeUrl()
+        );
+    }
 }

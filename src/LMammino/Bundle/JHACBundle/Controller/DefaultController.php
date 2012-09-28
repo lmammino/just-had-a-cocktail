@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 use LMammino\Bundle\JHACBundle\Entity\User;
 use LMammino\Bundle\JHACBundle\Facebook\Client;
+use LMammino\Bundle\JHACBundle\Entity\Had;
 
 class DefaultController extends Controller
 {
@@ -68,11 +69,15 @@ class DefaultController extends Controller
                 $formHadIt->get('action')->getData() == 'hadIt' &&
                 $user instanceof User)
             {
+                $em = $this->getDoctrine()->getManager();
+                $had = new Had($user, $cocktail);
+                $em->persist($had);
+                $em->flush();
+
                 if($user->isConnectedWithFacebook())
                 {
-                    $cocktailUrl = 'http://just-had-a-cocktail.pagodabox.com'.$cocktail->getRelativeUrl();
-                    $facebook = new Client($user->getFacebookAccessToken());
-                    $facebook->hadCocktail($cocktailUrl);
+                    $notification = $this->get('sonata.notification.backend');
+                    $notification->createAndPublish('had', $had->toArray());
                 }
 
                 // adds data to session for the notice

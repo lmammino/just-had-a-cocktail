@@ -21,8 +21,8 @@
 
         "friendsofsymfony/user-bundle": "*",
         "hwi/oauth-bundle": "*",
-        "friendsofsymfony/facebook-bundle": "dev-master",
         "oryzone/boilerplate-bundle": "*",
+        "sonata-project/notification-bundle": "*",
         "knplabs/knp-markdown-bundle": "*",
         "ornicar/gravatar-bundle" : "dev-master"
     },

@@ -51,10 +51,16 @@ doctrine:
         user:     %database_user%
         password: %database_password%
         charset:  UTF8
+        types:
+            json: Sonata\Doctrine\Types\JsonType
 
     orm:
         auto_generate_proxy_classes: %kernel.debug%
         auto_mapping: true
+        #entity_managers:
+        #    default:
+        #        mappings:
+        #            SonataNotificationBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -70,14 +76,9 @@ fos_user:
     firewall_name: main
     user_class: LMammino\Bundle\JHACBundle\Entity\User
 
-#FOSFacebookBundle
-#fos_facebook:
-#      file:   %kernel.root_dir%/../vendor/facebook/php-sdk/src/base_facebook.php
-#      alias:  facebook
-#      app_id: %facebook_client_id%
-#      secret: %facebook_client_secret%
-#      cookie: true
-#      permissions: [email, user_birthday, user_location, publish_stream, publish_actions]
+#SonataNotificationBundle
+sonata_notification:
+    backend: sonata.notification.backend.doctrine
 
 #HWIOauthBundle
 hwi_oauth:

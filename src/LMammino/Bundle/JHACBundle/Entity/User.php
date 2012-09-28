@@ -4,9 +4,11 @@ namespace LMammino\Bundle\JHACBundle\Entity;
 
 use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="LMammino\Bundle\JHACBundle\Entity\UserRepository")
  * @ORM\Table(name="fos_user")
  */
 class User extends BaseUser
@@ -46,9 +48,16 @@ class User extends BaseUser
      */
     protected $facebookAccessToken;
 
+    /**
+     * @var Collection $had
+     * @ORM\OneToMany(targetEntity="Had", mappedBy="user")
+     */
+    protected $had;
+
     public function __construct()
     {
         parent::__construct();
+        $this->had = new ArrayCollection();
     }
 
     public function serialize()
@@ -141,6 +150,14 @@ class User extends BaseUser
     }
 
     /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getHad()
+    {
+        return $this->had;
+    }
+
+    /**
      * Checks if the user is connected with facebook
      *
      * @return bool
@@ -161,6 +178,21 @@ class User extends BaseUser
             return NULL;
 
         return 'http://www.facebook.com/'.$this->facebookId;
+    }
+
+    /**
+     * Converts the current user to array
+     */
+    public function toArray()
+    {
+        return array(
+            'id' => $this->id,
+            'username' => $this->username,
+            'firstname' => $this->firstname,
+            'lastname' => $this->lastname,
+            'facebookId' => $this->facebookId,
+            'facebookAccessToken' => $this->facebookAccessToken
+        );
     }
 
 }
